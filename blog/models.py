@@ -19,6 +19,9 @@ class Blog(models.Model):
     was_published.short_description = 'Published?'
 
 
+
+
+
     def __str__(self):
         return self.post_title
 
@@ -27,3 +30,6 @@ class Gallery(models.Model):
     post = models.ForeignKey(Blog, default=None, on_delete=models.CASCADE)
 
     image = models.ImageField(upload_to="photos/",verbose_name='Image')
+
+    def __str__(self):
+        return self.image
