@@ -11,12 +11,19 @@ class Blog(models.Model):
     pub_date = models.DateTimeField('date published')
 
 
-    #not sure if this will work
-    image = ImageField(upload_to="photos/", blank=True, null=True)
-
     def was_published(self):
         now = timezone.now()
         return self.pub_date <= now
     was_published.admin_order_field = 'pub_date'
     was_published.boolean = True
     was_published.short_description = 'Published?'
+
+
+    def __str__(self):
+        return self.post_title
+
+
+class Gallery(models.Model):
+    post = models.ForeignKey(Blog, default=None, on_delete=models.CASCADE)
+
+    image = models.ImageField(upload_to="photos/",verbose_name='Image')
