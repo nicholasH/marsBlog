@@ -1,5 +1,8 @@
+import os
+
 from django.db import models
 from django.db.models import ImageField
+from django.dispatch import receiver
 from django.utils import timezone
 from django.utils.datetime_safe import datetime
 
@@ -31,5 +34,18 @@ class Gallery(models.Model):
 
     image = models.ImageField(upload_to="photos/",verbose_name='Image')
 
+
     def __str__(self):
-        return self.image
+        return str(self.image)
+
+
+@receiver(models.signals.post_delete, sender=Gallery)
+def auto_delete_file_on_delete(sender, instance, **kwargs):
+        """
+        Deletes file from filesystem
+        when corresponding `gallery` object is deleted.
+        """
+        print(instance)
+        if instance:
+            if os.path.isfile(str(instance)):
+                os.remove(str(instance))
