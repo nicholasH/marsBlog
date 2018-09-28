@@ -9,14 +9,15 @@ def blog(request):
     post_gall_dict = dict()
     posts = Blog.objects.all()
 
+    postlist = []
 
     for p in posts:
-        post_gall_dict[p] = Gallery.objects.get(post = p)
-
-    picList = list(Gallery.objects.all())
-
-    print(post_gall_dict)
+        g = Gallery.objects.filter(post=p)
+        postlist.append([p,list(g)])
 
 
+    print(postlist)
 
-    return render(request, 'blog/blog.html', {'blogs': posts,"dict":post_gall_dict})
+
+
+    return render(request, 'blog/blog.html', {"postlist":postlist})

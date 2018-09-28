@@ -1,19 +1,22 @@
 {% block content %}
 
   <div class="blogs">
-    {% for blog in blogs %}
+    {% for post in postlist %}
     <div class = "title">
-       <h3>{{ blog.blog.post_title }}</h3>
+       <h3>{{ post.0.post_title }}</h3>
     </div>
 
     <div class="image">
+      {% for image in post.1 %}
 
+      <img src="{{image}}">
 
+      {% endfor %}
 
 
     </div>
     <div class="post_content">
-      <p>{{ blog.blog.post_content }}</p>
+      <p>{{ post.0.post_content }}</p>
     </div>
 
 
