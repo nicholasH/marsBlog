@@ -3,19 +3,19 @@
   <div class="blogs">
     {% for blog in blogs %}
     <div class = "title">
-       <h3>{{ blog.post_title }}</h3>
+       <h3>{{ blog.blog.post_title }}</h3>
     </div>
 
     <div class="image">
 
 
 
+
     </div>
     <div class="post_content">
-      <p>{{ blog.post_content }}</p>
+      <p>{{ blog.blog.post_content }}</p>
     </div>
 
-    <p>{{blog}}</p>
 
     {% endfor %}
   </div>

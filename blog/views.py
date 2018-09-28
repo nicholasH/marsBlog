@@ -5,8 +5,18 @@ from django.shortcuts import render
 from .models import Blog , Gallery
 
 def blog(request):
-    blog = Blog.objects.all()
+
+    post_gall_dict = dict()
+    posts = Blog.objects.all()
+
+
+    for p in posts:
+        post_gall_dict[p] = Gallery.objects.get(post = p)
+
+    picList = list(Gallery.objects.all())
+
+    print(post_gall_dict)
 
 
 
-    return render(request, 'blog/blog.html', {'blogs': blog})
+    return render(request, 'blog/blog.html', {'blogs': posts,"dict":post_gall_dict})
