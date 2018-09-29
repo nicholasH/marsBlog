@@ -16,8 +16,7 @@ def blog(request):
         postlist.append([p,list(g)])
 
 
-    print(postlist)
 
 
 
-    return render(request, 'blog/blog.html', {"postlist":postlist})
+    return render(request, 'blog/blog.html', {"postlist":reversed(postlist)})

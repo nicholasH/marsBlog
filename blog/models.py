@@ -32,7 +32,7 @@ class Blog(models.Model):
 class Gallery(models.Model):
     post = models.ForeignKey(Blog, default=None, on_delete=models.CASCADE)
 
-    image = models.ImageField(upload_to="photos/",verbose_name='Image')
+    image = models.ImageField()
 
 
     def __str__(self):
@@ -49,3 +49,4 @@ def auto_delete_file_on_delete(sender, instance, **kwargs):
         if instance:
             if os.path.isfile(str(instance)):
                 os.remove(str(instance))
+
