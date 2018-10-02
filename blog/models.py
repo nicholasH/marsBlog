@@ -32,7 +32,7 @@ class Blog(models.Model):
 class Gallery(models.Model):
     post = models.ForeignKey(Blog, default=None, on_delete=models.CASCADE)
 
-    image = models.ImageField()
+    image = models.ImageField(upload_to="blog/images")
 
 
     def __str__(self):
